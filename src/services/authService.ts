@@ -1,5 +1,4 @@
 import { api } from "../lib/axiosConfig"
-import { tokenStorage } from "../lib/tokenStorage"
 import type { AuthResponse } from "../types/AuthResponse"
 import type { User } from "../types/User"
 
@@ -28,9 +27,7 @@ export async function register(
 }
 
 export async function logout(): Promise<void> {
-  const { data } = await api.post("/auth/logout")
-  tokenStorage.remove()
-  return data
+  await api.post("/auth/logout")
 }
 
 export async function getMe(): Promise<User> {
